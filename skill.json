@@ -1,0 +1,41 @@
+{
+  "name": "ghostroute",
+  "displayName": "GhostRoute — Free AI Router for OpenClaw",
+  "version": "1.0.0",
+  "description": "Run OpenClaw on OpenRouter’s free models with smart ranking, multi-fallback failover, and optional auto-rotation—so 429s don’t break your flow. Updates ~/.openclaw/openclaw.json safely (atomic writes) while preserving your existing setup.",
+  "author": "Dr.Kittimasak Naijit",
+  "repository": "https://github.com/kittimasak/GhostRoute",
+  "license": "MIT",
+  "commands": [
+    "list",
+    "switch",
+    "auto",
+    "status",
+    "refresh",
+    "fallbacks"
+  ],
+  "binaries": {
+    "ghostroute": "main:main",
+    "ghostroute-watcher": "watcher:main"
+  },
+  "dependencies": {
+    "requests": ">=2.31.0"
+  },
+  "config": {
+    "OPENROUTER_API_KEY": {
+      "description": "Your OpenRouter API key (get free at openrouter.ai/keys)",
+      "required": true,
+      "env": true
+    }
+  },
+  "openclaw": {
+    "compatible": true,
+    "minVersion": "1.0.0",
+    "configPath": "~/.openclaw/openclaw.json",
+    "configKeys": [
+      "agents.defaults.model",
+      "agents.defaults.models"
+    ]
+  },
+  "install": "npx clawhub@latest install ghostroute && cd ~/.openclaw/workspace/skills/ghost-route && pip install -e ."
+}
