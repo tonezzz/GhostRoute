@@ -59,7 +59,7 @@ def cmd_list(args) -> None:
             context_str = str(context)
 
         formatted_primary = format_for_openclaw(mid, with_routing_prefix=True)
-        formatted_fb = format_for_openclaw(mid, with_routing_prefix=False)
+        formatted_fb = format_for_openclaw(mid, with_routing_prefix=True)
         status = ""
         if current and formatted_primary == current:
             status = "[PRIMARY]"
@@ -99,7 +99,7 @@ def _apply_config(
         cfg = mgr.setup_openrouter_auth_profile(cfg)
 
     formatted_primary = format_for_openclaw(model_id, with_routing_prefix=True)
-    formatted_list = format_for_openclaw(model_id, with_routing_prefix=False)
+    formatted_list = format_for_openclaw(model_id, with_routing_prefix=True)
 
     if as_primary:
         cfg["agents"]["defaults"]["model"]["primary"] = formatted_primary
@@ -119,7 +119,7 @@ def _apply_config(
         if not mid or FREE_ROUTER_ID in mid:
             continue
 
-        fb = format_for_openclaw(mid, with_routing_prefix=False)
+        fb = format_for_openclaw(mid, with_routing_prefix=True)
         fb_primary = format_for_openclaw(mid, with_routing_prefix=True)
 
         # skip primary
@@ -265,7 +265,7 @@ def cmd_fallbacks(args) -> None:
         mid = m.get("id", "")
         if not mid or FREE_ROUTER_ID in mid:
             continue
-        fb = format_for_openclaw(mid, with_routing_prefix=False)
+        fb = format_for_openclaw(mid, with_routing_prefix=True)
         fb_primary = format_for_openclaw(mid, with_routing_prefix=True)
         if current and fb_primary == current:
             continue

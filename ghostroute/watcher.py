@@ -116,7 +116,7 @@ def rotate(reason: str) -> bool:
 
     # allowlist
     cfg["agents"]["defaults"]["models"].setdefault(
-        format_for_openclaw(next_mid, with_routing_prefix=False),
+        format_for_openclaw(next_mid, with_routing_prefix=True),
         {},
     )
 
@@ -130,7 +130,7 @@ def rotate(reason: str) -> bool:
             continue
         if is_in_cooldown(state, mid):
             continue
-        fb = format_for_openclaw(mid, with_routing_prefix=False)
+        fb = format_for_openclaw(mid, with_routing_prefix=True)
         fallbacks.append(fb)
         cfg["agents"]["defaults"]["models"].setdefault(fb, {})
         if len(fallbacks) >= 5:
